@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/blue"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/ic_arrow_back_black_24dp"
+            android:paddingLeft="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:text="HOLIDAYS"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20sp"
+            android:layout_marginLeft="200sp"
+            android:background="@drawable/ic_favorite_black_24dp"
+            android:layout_height="match_parent" />
+
+
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:state_focused="true">
+        <shape android:shape="rectangle"  >
+            <corners android:radius="4dip" />
+            <stroke android:width="1dip" android:color="#FF75B6E7" />
+            <solid android:color="#46bcea"/>
+        </shape>
+    </item>
+    <item >
+        <shape android:shape="rectangle"  >
+            <corners android:radius="4dip" />
+            <stroke android:width="1dip" android:color="#FF75B6E7" />
+            <gradient android:angle="-90" android:startColor="#FF75B6E7" android:endColor="#FF75B6E7" />
+        </shape>
+    </item>
+
+
+</selector>
