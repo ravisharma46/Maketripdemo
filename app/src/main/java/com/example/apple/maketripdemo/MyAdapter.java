@@ -19,8 +19,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<listitem> listitems;
     private Context context;
-
-
+    public int count , count2 ;
 
 
 
@@ -38,10 +37,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_item, viewGroup, false);
 
-        Log.e("POS","call");
-
-
-
 
         return new ViewHolder(v);
     }
@@ -52,25 +47,121 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         int x = viewHolder.getLayoutPosition();
 
+        Log.i("POSi",Integer.toString(x));
+
         final listitem listitem = listitems.get(i);
 
-        if(listitems.get(x).getShow_A().equals("01") && listitems.get(x).getShow_ch().equals("00") ) {
-            viewHolder.room_1.setText(listitem.getRoom());
-            viewHolder.adult_1.setText(listitem.getAdult());
+        if(i==0){
+            viewHolder.remove.setVisibility(View.INVISIBLE);
+        }
+
+        int z=listitems.size();
+
+
+        Log.i("POSiz",Integer.toString(z));
+        viewHolder.room_1.setText(listitem.getRoom());
+        viewHolder.adult_1.setText(listitem.getAdult());
+
+
+      //  if(listitems.get(x).getShow_A().equals("01") && listitems.get(x).getShow_ch().equals("00") ) {
+if((z-1)==i){
             viewHolder.adultA_1.setText(listitem.getAdultA());
             viewHolder.child_1.setText(listitem.getChild());
             viewHolder.childA_1.setText(listitem.getChidA());
             viewHolder.show_int.setText(listitem.getShow_A());
             viewHolder.show_int2.setText(listitem.getShow_ch());
 
+            count=1;
+            count2=0;
+
+
+    if (count == 1){
+        viewHolder.dcr_bt.setEnabled(false);
+    }
+
+            // button for adult listener
+            viewHolder.incr_bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    count++;
+                    viewHolder.dcr_bt.setEnabled(true);
+                    if (count > 4) {
+                        viewHolder.incr_bt.setEnabled(false);
+                        return;
+                    }
+                    viewHolder.show_int.setText("0" + Integer.toString(count));
+
+                }
+            });
+
+
+            viewHolder.dcr_bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    count--;
+                    viewHolder.incr_bt.setEnabled(true);
+                    if (count == 0) {
+                        viewHolder.dcr_bt.setEnabled(false);
+                        return;
+                    }
+                    viewHolder.show_int.setText("0" + Integer.toString(count));
+                }
+            });
+
+
+            //button for child listner
+            viewHolder.incr_bt2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    count2++;
+                    viewHolder.dcr_bt2.setEnabled(true);
+                    if (count2 > 4) {
+                        viewHolder.incr_bt2.setEnabled(false);
+                        return;
+                    }
+                    viewHolder.show_int2.setText("0" + Integer.toString(count2));
+
+                }
+            });
+
+
+    if (count2 == 0){
+        viewHolder.dcr_bt2.setEnabled(false);
+    }
+
+            viewHolder.dcr_bt2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    viewHolder.incr_bt2.setEnabled(true);
+                    count2--;
+                    if (count2 == 0) {
+
+                        viewHolder.dcr_bt2.setEnabled(false);
+                        viewHolder.show_int2.setText("0" + Integer.toString(count2));
+                        return;
+
+
+                    }
+
+                    viewHolder.show_int2.setText("0" + Integer.toString(count2));
+                }
+            });
+
+
 
 
         }
         else{
-
-
             viewHolder.show_int.setText(listitems.get(x).getShow_A());
             viewHolder.show_int2.setText(listitems.get(x).getShow_ch());
+
+            viewHolder.dcr_bt.setVisibility(View.INVISIBLE);
+            viewHolder.incr_bt.setVisibility(View.INVISIBLE);
+
+            viewHolder.dcr_bt2.setVisibility(View.INVISIBLE);
+            viewHolder.incr_bt2.setVisibility(View.INVISIBLE);
         }
 
 
@@ -94,7 +185,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView room_1, adult_1, adultA_1, child_1, childA_1, show_int, show_int2;
 
         public LinearLayout linearLayout;
-        public int count = 1, count2 = 0;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -123,69 +214,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
 
 
-
-
-
-
-            // button for adult listener
-            incr_bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    count++;
-                    dcr_bt.setEnabled(true);
-                    if (count > 4) {
-                        incr_bt.setEnabled(false);
-                        return;
-                    }
-                    show_int.setText("0" + Integer.toString(count));
-
-                }
-            });
-
-
-            dcr_bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    count--;
-                    incr_bt.setEnabled(true);
-                    if (count == 0) {
-                        dcr_bt.setEnabled(false);
-                        return;
-                    }
-                    show_int.setText("0" + Integer.toString(count));
-                }
-            });
-
-
-            //button for child listner
-            incr_bt2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    count2++;
-                    dcr_bt2.setEnabled(true);
-                    if (count2 > 4) {
-                        incr_bt2.setEnabled(false);
-                        return;
-                    }
-                   show_int2.setText("0" + Integer.toString(count2));
-
-                }
-            });
-
-
-           dcr_bt2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    count2--;
-                    incr_bt2.setEnabled(true);
-                    if (count2 == 0) {
-                      dcr_bt2.setEnabled(false);
-                        return;
-                    }
-                    show_int2.setText("0" + Integer.toString(count2));
-                }
-            });
 
 
            //saving previous data
@@ -237,13 +265,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
            //remove button set onClick
-
             remove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position =getAdapterPosition();
                     listitems.remove(position);
+                    //ViewHolder.this.getAdapterPosition();
+                   // MyAdapter.this.notifyAll();
                     notifyItemRemoved(position);
+
                 }
             });
 

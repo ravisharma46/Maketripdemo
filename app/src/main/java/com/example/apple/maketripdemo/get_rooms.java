@@ -101,14 +101,6 @@ public class get_rooms extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), SelectBookingDetails.class);
                 intent.putExtra("LIST", json);
                 setResult(3,intent);
-
-
-
-               // Gson gson = new Gson();
-               // Intent intent=new Intent();
-              // intent.putStringArrayListExtra("list",);
-               // intent.putExtra("LIST",gson.toJson(listitems));
-               // setResult(3,intent);
                 finish();//finishing activity
 
 
@@ -127,9 +119,8 @@ public class get_rooms extends AppCompatActivity {
 
         listitem item =new listitem("ROOM "+(x+1),"Adults","Age 12y and above","Children","Age 11y and below","01","00");
         listitems.add(item);
+
         x=listitems.size();
-
-
 
         adapter= new MyAdapter(listitems,getApplicationContext());
         recyclerView.setAdapter(adapter);

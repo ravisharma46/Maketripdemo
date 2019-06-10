@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class get_date extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class get_date extends AppCompatActivity {
     private CalendarView calendarView;
     private Button b1;
     public String formattedDate="";
+    public String str="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class get_date extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
                 Intent intent=new Intent();
                 intent.putExtra("MESSAGE",formattedDate);
                 setResult(2,intent);
@@ -54,34 +58,19 @@ public class get_date extends AppCompatActivity {
         });
 
 
+
+
         calendarView.setMinDate(System.currentTimeMillis() - 1000);
-
-
-
-
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
 
-
-
-                String str =Integer.toString(day)+"/"+Integer.toString(month+1)+"/"+Integer.toString(year);
+                 str =Integer.toString(day)+"/"+Integer.toString(month+1)+"/"+Integer.toString(year);
 
                 Log.e("TAG",str);
 
-                Date date = null;
-                try {
+                setDate(str);
 
-                    date = new SimpleDateFormat("dd/MM/yyyy").parse(str);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                formattedDate = new SimpleDateFormat("EEE dd MMM yyyy").format(date);
-
-
-
-              //  Toast.makeText(get_date.this, formattedDate, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -89,4 +78,26 @@ public class get_date extends AppCompatActivity {
 
 
     }
+
+    public  String setDate(String str){
+        Date date = null;
+        try {
+
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(str);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        formattedDate = new SimpleDateFormat("EEE dd MMM yyyy").format(date);
+
+        return formattedDate;
+    }
+
+
+    public String getFormattedDate() {
+        return formattedDate;
+    }
+
+
+
 }

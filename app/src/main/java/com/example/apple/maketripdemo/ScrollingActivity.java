@@ -39,6 +39,14 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ScrollingActivity.this,HolidayInActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 

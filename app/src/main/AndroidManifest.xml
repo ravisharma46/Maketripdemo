@@ -25,7 +25,10 @@
         <activity
             android:name=".get_date"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
-        <activity android:name=".get_rooms"
+        <activity
+            android:name=".get_rooms"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".HolidayInActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             ></activity>
     </application>

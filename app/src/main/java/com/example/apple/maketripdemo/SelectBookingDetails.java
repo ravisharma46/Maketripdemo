@@ -14,6 +14,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,15 +26,15 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class SelectBookingDetails extends AppCompatActivity {
 
     private TextView date,room_set,room, date_set;
+    private Button bt_done;
 
-    public String s2;
-
-
+    public String s="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class SelectBookingDetails extends AppCompatActivity {
         date_set = (TextView) findViewById(R.id.date_set);
         room_set = (TextView) findViewById(R.id.room_set);
         room = (TextView) findViewById(R.id.room);
+        bt_done = (Button) findViewById(R.id.bt_done);
 
 
 
@@ -80,6 +82,25 @@ public class SelectBookingDetails extends AppCompatActivity {
         });
 
 
+        final Calendar c =  Calendar.getInstance();
+        int mYear=c.get(Calendar.YEAR);
+        int mMonth=c.get(Calendar.MONTH);
+        int mDay =c.get(Calendar.DAY_OF_MONTH);
+
+        String str1 =Integer.toString(mDay)+"/"+Integer.toString(mMonth+1)+"/"+Integer.toString(mYear);
+        get_date g= new get_date();
+        g.setDate(str1);
+
+        s= g.getFormattedDate();
+        date_set.setText(s);
+
+        bt_done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
 
 
@@ -94,7 +115,18 @@ public class SelectBookingDetails extends AppCompatActivity {
         if(requestCode==2)
         {
             String message=data.getStringExtra("MESSAGE");
+
+
+            if(message.isEmpty()){
+                date_set.setText(s);
+            }
+            else{
+
             date_set.setText(message);
+        }
+
+
+
         }
         if(requestCode==3)
         {
@@ -110,12 +142,13 @@ public class SelectBookingDetails extends AppCompatActivity {
                List<listitem> objectLocations = gson.fromJson(stringLocation, type);
 
 
-               int ansA=0,ansC=0;
+               int ansA=0,ansC=0,Total_room=0;
                for(int i=0;i<objectLocations.size();i++){
                    String strA= objectLocations.get(i).getShow_A();
                    String strC=objectLocations.get(i).getShow_ch();
                    int sumA=Integer.parseInt(strA);
                    int sumC=Integer.parseInt(strC);
+                    Total_room=objectLocations.size();
                     ansA=ansA+sumA;
                     ansC=ansC+sumC;
 
@@ -123,11 +156,11 @@ public class SelectBookingDetails extends AppCompatActivity {
                }
 
                if(ansC==0){
-                   room_set.setText(ansA+" Adults in 1 Room");
+                   room_set.setText(ansA+" Adults in "+Total_room+" Room");
 
                }
                else if(ansC>0){
-                   room_set.setText(ansA+" Adults ,"+ ansC+" Child in 1 Room");
+                   room_set.setText(ansA+" Adults, "+ ansC+" Child in "+Total_room+" Room");
                }
 
 

@@ -4,6 +4,9 @@
     <string name="GOING">GOING TO Anywhere</string>
     <string name="holiday">HOLIDAYS</string>
     <string name="done">DONE</string>
+    <string name="lower">&lt;45000</string>
+    <string name="greater">&gt;100000</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
