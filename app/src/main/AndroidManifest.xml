@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apple.maketripdemo">
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -29,8 +30,12 @@
         <activity
             android:name=".get_rooms"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
-        <activity android:name=".HolidayInActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        <activity
+            android:name=".HolidayInActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".query" />
+        <activity android:name=".Holiday_select"
+
             ></activity>
     </application>
 

@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 public class HolidayInActivity extends AppCompatActivity {
 
-    public Button bt;
+    public Button bt,start;
     private LinearLayout mLinear;
 
 
@@ -36,6 +36,7 @@ public class HolidayInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_holiday_in);
 
         bt= (Button) findViewById(R.id.fab_call);
+        start= (Button) findViewById(R.id.start_1);
         mLinear = (LinearLayout) findViewById(R.id.child_linear);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -45,6 +46,24 @@ public class HolidayInActivity extends AppCompatActivity {
         final Drawable upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
         upArrow.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(HolidayInActivity.this,Holiday_select.class);
+                startActivity(i);
+            }
+        });
+
+
+
+
+
+
+
+
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,18 +77,17 @@ public class HolidayInActivity extends AppCompatActivity {
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.show();
 
-                TextView query = (TextView) sheetView.findViewById(R.id.send_query);
+                final TextView query_1 = (TextView) sheetView.findViewById(R.id.send_query);
                 TextView call = (TextView) sheetView.findViewById(R.id.call);
 
                 // Set  query button click listener
-                query.setOnClickListener(new View.OnClickListener() {
+                query_1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Dismiss the alert dialog
 
-                        Toast.makeText(getApplication(),
-                                "yes button clicked", Toast.LENGTH_SHORT).show();
-
+                       Intent i= new Intent(HolidayInActivity.this,query.class);
+                       startActivity(i);
 
                     }
                 });
